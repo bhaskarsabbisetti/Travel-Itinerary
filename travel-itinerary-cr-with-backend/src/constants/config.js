@@ -1,6 +1,6 @@
 export const CONFIG = {
   api: {
-    baseURL: import.meta.env.VITE_BACKEND_URL + '/api',
+    baseURL: import.meta.env.VITE_BACKEND_URL + '/api/auth/register',
     timeout: 30000
   },
   pagination: {
