@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-Powered Travel Itinerary Creator - Plan your perfect trip with personalized day-by-day itineraries, activity recommendations, and smart budgeting.">
+    <title>TravelPlan AI - Smart Trip Itinerary Creator</title>
+    <base href="./">
+    
+    <meta property="og:title" content="TravelPlan AI - Smart Trip Itinerary Creator">
+    <meta property="og:description" content="Create personalized travel itineraries with AI assistance">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary: 217 91% 60%;
+        --primary-hover: 217 91% 50%;
+        --primary-light: 217 91% 96%;
+        
+        --success: 160 84% 39%;
+        --danger: 0 84% 60%;
+        --warning: 38 92% 50%;
+        
+        --background: 220 20% 97%;
+        --surface: 0 0% 100%;
+        --foreground: 222 47% 11%;
+        --muted: 215 16% 47%;
+        --border: 214 32% 91%;
+        
+        --radius: 0.75rem;
+      }
+      
+      * {
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+    </style>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: 'hsl(var(--primary))', hover: 'hsl(var(--primary-hover))', light: 'hsl(var(--primary-light))' },
+              success: 'hsl(var(--success))',
+              danger: 'hsl(var(--danger))',
+              warning: 'hsl(var(--warning))',
+              background: 'hsl(var(--background))',
+              surface: 'hsl(var(--surface))',
+              foreground: 'hsl(var(--foreground))',
+              muted: 'hsl(var(--muted))',
+              border: 'hsl(var(--border))',
+            },
+            borderRadius: {
+              DEFAULT: 'var(--radius)'
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-background text-foreground">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
