@@ -1,3 +1,4 @@
+// src/contexts/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { getToken, setToken, clearToken, apiFetch } from '../utils/api'
 
@@ -11,6 +12,7 @@ export function AuthProvider({ children }) {
     checkAuth()
   }, [])
 
+  // 🔍 Check Auth on load
   const checkAuth = async () => {
     const token = getToken()
 
@@ -20,7 +22,10 @@ export function AuthProvider({ children }) {
     }
 
     try {
-      const response = await apiFetch('api/auth/me')
+      const response = await apiFetch('/auth/me/', {
+        method: 'GET'
+      })
+
       if (response.ok) {
         const data = await response.json()
         setUser(data.user)
@@ -35,10 +40,10 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // 🔐 LOGIN
   const login = async (email, password) => {
-    const response = await fetch('api/auth/login', {
+    const response = await apiFetch('/auth/login/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     })
 
@@ -53,10 +58,10 @@ export function AuthProvider({ children }) {
     return data
   }
 
+  // 🆕 REGISTER
   const register = async (email, password, name) => {
-    const response = await fetch('api/auth/register', {
+    const response = await apiFetch('/auth/register/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, name })
     })
 
@@ -71,18 +76,21 @@ export function AuthProvider({ children }) {
     return data
   }
 
+  // 🚪 LOGOUT
   const logout = async () => {
     try {
-      await apiFetch('api/auth/logout', { method: 'POST' })
+      await apiFetch('/auth/logout/', { method: 'POST' })
     } catch (err) {
       console.error('Logout error:', err)
     }
+
     clearToken()
     setUser(null)
   }
 
+  // ⚙️ UPDATE PREFERENCES
   const updatePreferences = async (preferences) => {
-    const response = await apiFetch('api/user/preferences', {
+    const response = await apiFetch('/user/preferences/', {
       method: 'PUT',
       body: JSON.stringify(preferences)
     })
