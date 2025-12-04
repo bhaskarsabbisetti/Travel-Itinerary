@@ -9,6 +9,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -29,9 +30,13 @@ export default function Login() {
       } else {
         await register(formData.email, formData.password, formData.name)
       }
+
       navigate('/dashboard')
     } catch (err) {
-      setError(err.message)
+      console.error("Auth error:", err)
+
+      // Show meaningful backend error
+      setError(err.message || "Failed to connect. Please try again.")
     } finally {
       setLoading(false)
     }
@@ -58,20 +63,6 @@ export default function Login() {
           <p className="text-xl text-white/80 mb-8">
             Create personalized day-by-day itineraries, discover hidden gems, and plan the perfect trip with intelligent recommendations.
           </p>
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">✨</div>
-              <span>AI-generated personalized itineraries</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">📍</div>
-              <span>Smart activity & restaurant recommendations</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">💰</div>
-              <span>Budget-aware trip planning</span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -98,7 +89,7 @@ export default function Login() {
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-danger/10 border border-danger/20 text-danger rounded-xl text-sm">
+            <div className="mb-6 p-4 bg-red-100 text-red-700 border border-red-200 rounded-xl text-sm">
               {error}
             </div>
           )}
@@ -150,7 +141,6 @@ export default function Login() {
                   placeholder="••••••••"
                   className="w-full pl-12 pr-12 py-3.5 bg-surface border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                   required
-                  minLength={6}
                 />
                 <button
                   type="button"

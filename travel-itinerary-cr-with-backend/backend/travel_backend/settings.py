@@ -118,6 +118,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    "https://travel-itinerary-rho.vercel.app"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -125,3 +126,8 @@ CORS_ALLOW_CREDENTIALS = True
 # Allow all origins in development if needed
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+    "https://*.onrender.com",
+]
