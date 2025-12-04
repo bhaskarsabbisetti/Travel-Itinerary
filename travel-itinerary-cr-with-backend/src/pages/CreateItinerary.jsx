@@ -37,15 +37,20 @@ export default function CreateItinerary() {
     }
   }, [editId])
 
+  /** FIXED URL */
   const fetchItinerary = async () => {
     try {
       setLoading(true)
-      const response = await apiFetch(`api/itineraries/${editId}`)
-      const data = await response.json()
 
-      if (!response.ok) throw new Error(data.error || 'Failed to load')
+      const response = await apiFetch(`/itineraries/${editId}/`, {
+        method: "GET"
+      })
+
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || "Failed to load")
 
       const itinerary = data.itinerary
+
       setFormData({
         title: itinerary.title || '',
         destination: itinerary.destination || '',
@@ -56,9 +61,10 @@ export default function CreateItinerary() {
         notes: itinerary.notes || ''
       })
 
-      if (itinerary.days_plan && itinerary.days_plan.length > 0) {
+      if (itinerary.days_plan?.length) {
         setDays(itinerary.days_plan)
       }
+
     } catch (err) {
       setError(err.message)
     } finally {
@@ -141,10 +147,14 @@ export default function CreateItinerary() {
         days_count: days.length
       }
 
-      const url = editId ? `api/itineraries/${editId}` : 'api/itineraries'
-      const method = editId ? 'PUT' : 'POST'
+      /** FIXED URL */
+      const endpoint = editId
+        ? `/itineraries/${editId}/`
+        : `/itineraries/`
 
-      const response = await apiFetch(url, {
+      const method = editId ? "PUT" : "POST"
+
+      const response = await apiFetch(endpoint, {
         method,
         body: JSON.stringify(payload)
       })
@@ -168,6 +178,8 @@ export default function CreateItinerary() {
       </div>
     )
   }
+
+
 
   return (
     <div className="min-h-screen bg-background pt-20 pb-12">
