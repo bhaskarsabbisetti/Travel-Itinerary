@@ -48,8 +48,8 @@
 //   return response
 // }
 
+import { CONFIG } from '../constants/config.js'
 
-import { CONFIG } from './config'
 
 const TOKEN_KEY = 'travel_auth_token'
 
