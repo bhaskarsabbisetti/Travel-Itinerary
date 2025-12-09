@@ -23,7 +23,7 @@ export default function ViewItinerary() {
     try {
       setLoading(true)
       setError(null)
-      const response = await apiFetch(`api/itineraries/${id}`)
+      const response = await apiFetch(`/itineraries/${id}`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -46,7 +46,7 @@ export default function ViewItinerary() {
     newDays[dayIndex] = updatedDay
 
     try {
-      const response = await apiFetch(`api/itineraries/${id}`, {
+      const response = await apiFetch(`/itineraries/${id}`, {
         method: 'PUT',
         body: JSON.stringify({ days_plan: newDays })
       })
