@@ -42,7 +42,7 @@ export default function CreateItinerary() {
     try {
       setLoading(true)
 
-      const response = await apiFetch(`/itineraries/${editId}/`, {
+      const response = await apiFetch(`/itineraries/${editId}`, {
         method: "GET"
       })
 
@@ -149,8 +149,8 @@ export default function CreateItinerary() {
 
       /** FIXED URL */
       const endpoint = editId
-        ? `/itineraries/${editId}/`
-        : `/itineraries/`
+        ? `/itineraries/${editId}`
+        : `/itineraries`
 
       const method = editId ? "PUT" : "POST"
 
