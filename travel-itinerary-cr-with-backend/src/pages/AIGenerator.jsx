@@ -54,7 +54,7 @@ export default function AIGenerator() {
     setLoading(true)
 
     try {
-      const response = await apiFetch('api/generate-itinerary', {
+      const response = await apiFetch('/generate-itinerary', {
         method: 'POST',
         body: JSON.stringify(formData)
       })
@@ -92,7 +92,7 @@ export default function AIGenerator() {
         notes: formData.special_requests
       }
 
-      const response = await apiFetch('api/itineraries', {
+      const response = await apiFetch('/itineraries', {
         method: 'POST',
         body: JSON.stringify(payload)
       })
