@@ -22,7 +22,7 @@ export default function Dashboard() {
     try {
       setLoading(true)
       setError(null)
-      const response = await apiFetch('api/itineraries')
+      const response = await apiFetch('/api/itineraries')
       const data = await response.json()
 
       if (!response.ok) {
@@ -42,7 +42,7 @@ export default function Dashboard() {
     if (!confirm('Are you sure you want to delete this itinerary?')) return
 
     try {
-      const response = await apiFetch(`api/itineraries/${id}`, { method: 'DELETE' })
+      const response = await apiFetch(`/api/itineraries/${id}`, { method: 'DELETE' })
 
       if (!response.ok) {
         const data = await response.json()
